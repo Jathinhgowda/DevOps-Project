@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Booking</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        /* Add custom styling to the select elements */
+        select {
+            width: 100%;
+            padding: 8px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        input[type="text"], input[type="email"], input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            background-color: #1a588b;
+            color: white;
+            border: none;
+        }
+
+        /* Styling for app name */
+        .app-name {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #007bff;
+            text-align: center;
+            margin-bottom: 15px; /* Reduced margin */
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 15px; /* Reduced padding */
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 10px; /* Reduced margin-top */
+            margin-bottom: 20px; /* Reduced margin-bottom */
+        }
+
+        form {
+            margin-bottom: 20px; /* Reduced form bottom margin */
+        }
+
+        .form-group {
+            margin-bottom: 15px; /* Reduced spacing between form elements */
+        }
+
+        button {
+            width: 100%; /* Ensuring button stretches to full width */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Display App Name -->
+        <div class="app-name">
+            EasyBookings
+        </div>
+        
+        <h1>Create a New Booking</h1>
+        <form method="POST">
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="movie_title">Movie Title:</label>
+                <select id="movie_title" name="movie_title" required>
+                    <option value="" disabled selected>Select a Movie</option>
+                    <option value="Navagraha">Navagraha</option>
+                    <option value="Bhageera">Bhageera</option>
+                    <option value="Amaran">Amaran</option>
+                    <option value="Bhool Bhulaiyaa 3">Bhool Bhulaiyaa 3</option>
+                    <option value="Singham Again">Singham Again</option>
+                    <!-- Add more movie options here -->
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="showtime">Showtime:</label>
+                <select id="showtime" name="showtime" required>
+                    <option value="" disabled selected>Select Showtime</option>
+                    <option value="10:00 AM">10:00 AM</option>
+                    <option value="1:00 PM">1:00 PM</option>
+                    <option value="4:00 PM">4:00 PM</option>
+                    <option value="7:00 PM">7:00 PM</option>
+                    <!-- Add more showtimes here -->
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="seats">Seats:</label>
+                <input type="number" id="seats" name="seats" min="1" max="10" required>
+            </div>
+
+            <button type="submit">Create Booking</button>
+        </form>
+    </div>
+</body>
+</html>

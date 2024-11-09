@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EasyBookings</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        /* Styling for app name */
+        .app-name {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #007bff;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px 0;
+        }
+
+        /* Styling for buttons */
+        .button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            text-decoration: none;
+            color: white;
+            display: inline-block;
+            margin: 5px;
+            cursor: pointer;
+        }
+
+        /* Adjusted button colors for visibility */
+        .logout-btn {
+            background-color: #dc3545; /* Strong red for logout */
+        }
+
+        .login-btn {
+            background-color: #17a2b8; /* Strong blue for login */
+        }
+
+        .register-btn {
+            background-color: #ffc107; /* Bright yellow for register */
+        }
+
+        .create-btn {
+            background-color: #28a745; /* Green for create new booking */
+        }
+
+        .update-btn {
+            background-color: #ffc107; /* Yellow for update */
+        }
+
+        .delete-btn {
+            background-color: #dc3545; /* Red for delete */
+        }
+
+        .button:hover {
+            opacity: 0.8;
+        }
+
+        .actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .auth-links {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+        }
+
+        /* Table styling */
+        .bookings-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .bookings-table th, .bookings-table td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        /* Changed table headings color */
+        .bookings-table th {
+            background-color: #007bff; /* Blue background for table headers */
+            color: white; /* White text color for readability */
+        }
+
+        .bookings-table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        .bookings-table a {
+            color: white;
+            text-decoration: none;
+        }
+
+        /* Style for the login message */
+        p {
+            font-size: 1.1rem;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header with app name -->
+        <header>
+            <div class="app-name">EasyBookings</div>
+        </header>
+
+        {% if session.get('user_id') %}
+            <div class="actions">
+                <!-- Create New Booking and Logout button inline -->
+                <a href="{{ url_for('create') }}" class="button create-btn">Create New Booking</a>
+                <a href="{{ url_for('logout') }}" class="button logout-btn">Logout</a>
+            </div>
+            
+            <!-- Bookings Table -->
+            <table class="bookings-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Movie Title</th>
+                        <th>Showtime</th>
+                        <th>Seats</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for booking in bookings %}
+                    <tr>
+                        <td>{{ booking[0] }}</td>
+                        <td>{{ booking[1] }}</td>
+                        <td>{{ booking[2] }}</td>
+                        <td>{{ booking[3] }}</td>
+                        <td>{{ booking[4] }}</td>
+                        <td>{{ booking[5] }}</td>
+                        <td>
+                            <a href="{{ url_for('update', id=booking[0]) }}" class="button update-btn">Update</a>
+                            <a href="{{ url_for('delete', id=booking[0]) }}" class="button delete-btn">Delete</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>Please <a href="{{ url_for('login') }}">log in</a> to view bookings and make reservations.</p>
+        {% endif %}
+    </div>
+</body>
+</html>

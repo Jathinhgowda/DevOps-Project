@@ -1,0 +1,107 @@
+/* General Page Styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f6fa;
+    margin: 0;
+    padding: 20px;
+}
+
+/* Centered Container */
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Header */
+h1 {
+    color: #333333;
+    text-align: center;
+}
+
+/* Links */
+a {
+    color: #0056b3;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+a:hover {
+    text-decoration: underline;
+    color: #003a80;
+}
+
+/* Form Layout */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Form Input Fields */
+form input {
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f1f4fb;
+}
+
+form input:focus {
+    border-color: #2f31c7;
+    outline: none;
+    background-color: #e9efff;
+}
+
+/* Form Button */
+form button {
+    padding: 12px;
+    background-color: #2f31c7;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+form button:hover {
+    background-color: #003a80;
+}
+
+/* Table Styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    font-size: 0.9em;
+    background-color: #ffffff;
+    overflow-x: auto;
+}
+
+/* Table Header */
+th {
+    padding: 15px;
+    background-color: #2f31c7;
+    color: #ffffff;
+    text-align: left;
+    font-weight: bold;
+    border: 1px solid #ddd;
+}
+
+th, td {
+    padding: 12px;
+    border: 1px solid #ddd;
+}
+
+/* Table Rows */
+td {
+    background-color: #fafafa;
+}
+
+/* Table Row Hover Effect */
+tr:hover td {
+    background-color: #f1f4fb;
+}

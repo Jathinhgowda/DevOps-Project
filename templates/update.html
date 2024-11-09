@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Booking</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        /* Add custom styling to the select elements */
+        select {
+            width: 100%;
+            padding: 8px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        input[type="text"], input[type="email"], input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+        }
+
+        /* Consistent App Name Styling */
+        .app-name {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #007bff;
+            text-align: center; /* Center the app name */
+            margin: 0;
+            flex-grow: 1;
+        }
+
+        /* Update Booking heading alignment */
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        /* Reduce spacing between form elements */
+        .form-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .form-container label {
+            margin: 5px 0;
+        }
+
+        .form-container input,
+        .form-container select {
+            margin-bottom: 10px;
+        }
+
+        button {
+            margin-top: 10px;
+        }
+
+        /* Header layout */
+        header {
+            display: flex;
+            justify-content: center; /* Aligns the app name in the center */
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .auth-links {
+            margin-left: 20px;
+        }
+
+        .auth-links a {
+            margin-left: 10px;
+            text-decoration: none;
+            padding: 8px 16px;
+            background-color: red;
+            color: white;
+            border-radius: 5px;
+        }
+
+        .auth-links a:hover {
+            background-color: #cc0000;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header with App Name and Logout Button -->
+        <header>
+            <div class="app-name">EasyBookings</div>  <!-- App Name with consistent styling -->
+            <div class="auth-links">
+                {% if session.get('user_id') %}
+                    <a href="{{ url_for('logout') }}" class="button logout-btn">Logout</a>
+                {% endif %}
+            </div>
+        </header>
+
+        <!-- Update Booking Heading -->
+        <h1>Update Booking</h1>
+
+        <!-- Form for updating booking -->
+        <form method="POST" class="form-container">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" value="{{ booking[1] }}" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" value="{{ booking[2] }}" required>
+
+            <label for="movie_title">Movie Title:</label>
+            <select id="movie_title" name="movie_title" required>
+                <option value="" disabled>Select a Movie</option>
+                <option value="Movie1" {% if booking[3] == "Navagraha" %}selected{% endif %}>Navagraha</option>
+                <option value="Movie2" {% if booking[3] == "Bhageera" %}selected{% endif %}>Bhageera</option>
+                <option value="Movie3" {% if booking[3] == "Amaran" %}selected{% endif %}>Amaran</option>
+                <option value="Movie3" {% if booking[3] == "BhoolBhulaiyaa3" %}selected{% endif %}>Bhool Bhulaiyaa 3</option>
+                <option value="Movie3" {% if booking[3] == "SinghamAgain" %}selected{% endif %}>Singham Again</option>
+                <!-- Add more movie options here -->
+            </select>
+
+            <label for="showtime">Showtime:</label>
+            <select id="showtime" name="showtime" required>
+                <option value="" disabled>Select Showtime</option>
+                <option value="10:00 AM" {% if booking[4] == "10:00 AM" %}selected{% endif %}>10:00 AM</option>
+                <option value="1:00 PM" {% if booking[4] == "1:00 PM" %}selected{% endif %}>1:00 PM</option>
+                <option value="4:00 PM" {% if booking[4] == "4:00 PM" %}selected{% endif %}>4:00 PM</option>
+                <option value="7:00 PM" {% if booking[4] == "7:00 PM" %}selected{% endif %}>7:00 PM</option>
+                <!-- Add more showtimes here -->
+            </select>
+
+            <label for="seats">Seats:</label>
+            <input type="number" id="seats" name="seats" value="{{ booking[5] }}" min="1" required>
+
+            <button type="submit">Update Booking</button>
+        </form>
+    </div>
+</body>
+</html>
